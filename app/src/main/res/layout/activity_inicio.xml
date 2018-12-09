@@ -27,7 +27,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jorge"
+                android:text="Ma Long"
                 android:layout_gravity="center"
                 android:textSize="30sp"/>
 
@@ -67,10 +67,12 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_placar"/>
 
-            <EditText
+            <Button
+                android:id="@+id/btnPlacar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Marcar Palcar"/>
+                android:background="@android:color/white"
+                android:text="Marcar Placar"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
