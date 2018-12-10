@@ -18,10 +18,10 @@
         </activity>
         <activity
             android:name=".PlacarActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".ConfiguraPlacarActivity">
-
-        </activity>
+            android:screenOrientation="landscape" />
+        <activity android:name=".ConfiguraPlacarActivity" />
+        <activity android:name=".HistoricoActivity" />
+        <activity android:name=".PartidaItemActivity"></activity>
     </application>
 
 </manifest>

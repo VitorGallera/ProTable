@@ -51,7 +51,9 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_amigos"/>
 
-            <EditText
+            <Button
+                android:id="@+id/btnAmigos"
+                android:enabled="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amigos"/>
@@ -85,7 +87,9 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_amigos"/>
 
-            <EditText
+            <Button
+                android:id="@+id/btnTreinar"
+                android:enabled="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Treinar"/>
@@ -101,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_amigos"/>
 
-            <EditText
+            <Button
+                android:id="@+id/btnHistorico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Histórico"/>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="16dp"
+    tools:context=".PartidaItemActivity">
+
+    <TextView
+        android:id="@+id/tvJogador1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:paddingRight="20dp"
+        android:text="Jogador1"
+        />
+
+    <TextView
+        android:id="@+id/tvResultado"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:hint="0x0"
+        />
+
+    <TextView
+        android:id="@+id/tvJogador2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="20dp"
+        android:text="Jogador2"
+        />
+
+
+</LinearLayout>

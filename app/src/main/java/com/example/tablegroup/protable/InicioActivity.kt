@@ -16,5 +16,11 @@ class InicioActivity : Activity() {
             val configuraPlacarPartida = Intent(this, ConfiguraPlacarActivity::class.java)
             startActivity(configuraPlacarPartida)
         }
+
+        btnHistorico.setOnClickListener {
+
+            val historico = Intent(this, HistoricoActivity::class.java)
+            startActivity(historico)
+        }
     }
 }

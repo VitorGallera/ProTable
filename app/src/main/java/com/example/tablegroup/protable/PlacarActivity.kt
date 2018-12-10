@@ -1,19 +1,18 @@
 package com.example.tablegroup.protable
 
 import android.app.Activity
-import android.content.Intent
-import android.drm.DrmRights
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_placar.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class PlacarActivity : Activity() {
 
-    var jogador1: Jogador = Jogador("")
-    var jogador2: Jogador = Jogador("")
+    var jogador1: Jogador = Jogador()
+    var jogador2: Jogador = Jogador()
     var fimSet: Boolean = false
-    var partida: Partida = Partida(jogador1, jogador2)
+    var partida: Partida = Partida(jogador1.Nome, jogador2.Nome)
 
     var set: Int = 1
 
@@ -26,6 +25,9 @@ class PlacarActivity : Activity() {
 
         jogador1 = intent.getSerializableExtra(ConfiguraPlacarActivity.JOGADOR1) as Jogador
         jogador2 = intent.getSerializableExtra(ConfiguraPlacarActivity.JOGADOR2) as Jogador
+
+        partida.Jogador1 = jogador1.Nome
+        partida.Jogador2 = jogador2.Nome
 
         tvNomeJogadorLeft.text = jogador1.Nome
         tvNomeJogadorRight.text = jogador2.Nome
@@ -73,12 +75,14 @@ class PlacarActivity : Activity() {
 
     fun finalSet(){
         when (set) {
+            //Lado esquerda das variaveis Set'is é do jogador1
             1 -> partida.Set1 = pontosLeft.toString() + "x" + pontosRight.toString()
-            2 -> partida.Set2 = pontosLeft.toString() + "x" + pontosRight.toString()
+            2 -> partida.Set2 = pontosRight.toString() + "x" + pontosLeft.toString()
             3 -> partida.Set3 = pontosLeft.toString() + "x" + pontosRight.toString()
-            4 -> partida.Set4 = pontosLeft.toString() + "x" + pontosRight.toString()
+            4 -> partida.Set4 = pontosRight.toString() + "x" + pontosLeft.toString()
             5 -> partida.Set5 = pontosLeft.toString() + "x" + pontosRight.toString()
         }
+
         pontosLeft = 0
         pontosRight = 0
         set += 1
@@ -102,8 +106,18 @@ class PlacarActivity : Activity() {
         }
         fimSet = false
 
-        if((jogador1.Sets == 3) || (jogador2.Sets == 3)){
+        if((jogador1.Sets >= 3) || (jogador2.Sets >= 3)){
+
+            partida.ResultadoFinal = jogador1.Sets.toString() + "x" + jogador2.Sets.toString()
             Toast.makeText(this, "Partida finalizada", Toast.LENGTH_LONG).show()
+
+            val partidaDAO: PartidaDAO = AppDatabase.getInstance(this).partidaDao()
+            doAsync{
+                partidaDAO.insert(partida!!)
+                uiThread{
+                    finish()
+                }
+            }
         }
     }
 }

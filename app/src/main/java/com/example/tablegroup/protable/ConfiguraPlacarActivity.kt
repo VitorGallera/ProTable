@@ -24,6 +24,7 @@ class ConfiguraPlacarActivity : Activity() {
             placar.putExtra(JOGADOR1, jogador1)
             placar.putExtra(JOGADOR2, jogador2)
             startActivity(placar)
+            //finish()
         }
     }
 }
