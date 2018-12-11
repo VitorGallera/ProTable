@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center">
 
 
@@ -46,6 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="VS"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_gravity="center"
             />
 
@@ -56,13 +58,61 @@
             android:layout_gravity="center"
             android:hint="Insira o nome do 2º jogador"
             />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Número Sets"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdbtn1Set"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="1 Set"
+                    android:checked="true"
+                    android:layout_marginTop="16dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/rdbtn3Set"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="3 Sets"
+                    android:layout_marginTop="16dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/rdbtn5Set"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="5 Sets"
+                    android:layout_marginTop="16dp"
+                    />
+            </RadioGroup>
+
         </LinearLayout>
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btnIniciar"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:text="Iniciar"
         />

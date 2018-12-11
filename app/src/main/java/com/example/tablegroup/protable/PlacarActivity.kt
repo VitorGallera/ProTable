@@ -1,6 +1,7 @@
 package com.example.tablegroup.protable
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_placar.*
@@ -14,6 +15,8 @@ class PlacarActivity : Activity() {
     var fimSet: Boolean = false
     var partida: Partida = Partida(jogador1.Nome, jogador2.Nome)
 
+    var qtdeSet: Int = 0
+
     var set: Int = 1
 
     var pontosLeft: Int = 0
@@ -25,12 +28,15 @@ class PlacarActivity : Activity() {
 
         jogador1 = intent.getSerializableExtra(ConfiguraPlacarActivity.JOGADOR1) as Jogador
         jogador2 = intent.getSerializableExtra(ConfiguraPlacarActivity.JOGADOR2) as Jogador
+        qtdeSet = intent.getIntExtra(ConfiguraPlacarActivity.NUMEROSET, 1)
 
         partida.Jogador1 = jogador1.Nome
         partida.Jogador2 = jogador2.Nome
 
         tvNomeJogadorLeft.text = jogador1.Nome
         tvNomeJogadorRight.text = jogador2.Nome
+
+        ivSaqueLeft.setBackgroundColor(Color.BLACK)
 
         tvJogadorLeft.setOnClickListener {
             pontosLeft += 1
@@ -43,6 +49,7 @@ class PlacarActivity : Activity() {
                     jogador1.Sets += 1
                 finalSet()
             }
+            verificaSaque()
         }
 
         tvJogadorRight.setOnClickListener {
@@ -57,7 +64,7 @@ class PlacarActivity : Activity() {
 
                 finalSet()
             }
-
+            verificaSaque()
         }
 
     }
@@ -67,7 +74,7 @@ class PlacarActivity : Activity() {
             if((pontosLeft - pontosRight) >=2)
                 fimSet = true
         }
-        else if (pontosRight >= 11) {
+        if (pontosRight >= 11) {
             if((pontosRight - pontosLeft) >=2)
                 fimSet = true
         }
@@ -106,7 +113,7 @@ class PlacarActivity : Activity() {
         }
         fimSet = false
 
-        if((jogador1.Sets >= 3) || (jogador2.Sets >= 3)){
+        if((jogador1.Sets >= ((qtdeSet/2) + 0.5)) || (jogador2.Sets >= ((qtdeSet/2) + 0.5))){
 
             partida.ResultadoFinal = jogador1.Sets.toString() + "x" + jogador2.Sets.toString()
             Toast.makeText(this, "Partida finalizada", Toast.LENGTH_LONG).show()
@@ -117,6 +124,29 @@ class PlacarActivity : Activity() {
                 uiThread{
                     finish()
                 }
+            }
+        }
+    }
+
+    fun verificaSaque(){
+        if(pontosLeft >= 10 && pontosRight >= 10){
+            if(((pontosLeft + pontosRight) % 2) == 0) {
+                ivSaqueLeft.setBackgroundColor(Color.BLACK)
+                ivSaqueRight.setBackgroundColor(Color.parseColor("#fafafa"))
+            }
+            else{
+                ivSaqueRight.setBackgroundColor(Color.BLACK)
+                ivSaqueLeft.setBackgroundColor(Color.parseColor("#fafafa"))
+            }
+        }
+        else {
+            if (((pontosLeft + pontosRight) % 4) <= 1) {
+                ivSaqueLeft.setBackgroundColor(Color.BLACK)
+                ivSaqueRight.setBackgroundColor(Color.parseColor("#fafafa"))
+            } else {
+                ivSaqueRight.setBackgroundColor(Color.BLACK)
+                ivSaqueLeft.setBackgroundColor(Color.parseColor("#fafafa"))
+
             }
         }
     }
