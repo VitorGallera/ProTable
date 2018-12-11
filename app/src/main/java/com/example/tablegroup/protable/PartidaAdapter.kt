@@ -13,6 +13,8 @@ class PartidaAdapter(val context: Context, val partidas: List<Partida>):
     //salva a função do clique no item
     var clickListener: ((index: Int) -> Unit)? = null
 
+    var cliqueLongoListener: ((index: Int) -> Boolean)? = null
+
     //método responsável por inflar as views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_partida_item, parent, false)
@@ -25,7 +27,7 @@ class PartidaAdapter(val context: Context, val partidas: List<Partida>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(context, partidas[position], clickListener)
+        holder.bindView(context, partidas[position], clickListener, cliqueLongoListener)
     }
 
     //configuração a função de clique nos itens
@@ -33,12 +35,17 @@ class PartidaAdapter(val context: Context, val partidas: List<Partida>):
         this.clickListener = clique
     }
 
+    fun configuraCliqueLongo(cliqueLongo: ((index: Int) -> Boolean)){
+        this.cliqueLongoListener = cliqueLongo
+    }
+
     //referência para a view de cada item da lista
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindView(context:Context,
                      partida: Partida,
-                     clickListener: ((index: Int) -> Unit)?) {
+                     clickListener: ((index: Int) -> Unit)?,
+                     cliqueLongoListener: ((index: Int) -> Boolean)?) {
             itemView.tvJogador1.text = partida.Jogador1
             itemView.tvResultado.text = partida.ResultadoFinal
             itemView.tvJogador2.text = partida.Jogador2
@@ -46,6 +53,12 @@ class PartidaAdapter(val context: Context, val partidas: List<Partida>):
             if(clickListener != null) {
                 itemView.setOnClickListener {
                     clickListener.invoke(adapterPosition)
+                }
+            }
+
+            if(cliqueLongoListener != null) {
+                itemView.setOnLongClickListener {
+                    cliqueLongoListener.invoke((adapterPosition))
                 }
             }
         }

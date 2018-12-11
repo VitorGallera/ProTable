@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_historico.*
 import org.jetbrains.anko.activityUiThreadWithContext
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class HistoricoActivity : Activity() {
 
@@ -33,9 +34,19 @@ class HistoricoActivity : Activity() {
                     // val editaContatinho = Intent(this, CadastraContatinhoActivity::class.java)
                     //editaContatinho.putExtra(CadastraContatinhoActivity.CONTATINHO, listaContatinhos.get(indexContatinhoClicado))
                     //startActivity(editaContatinho)
-
+                    true
                 }
-                true
+
+                adapter.configuraCliqueLongo {indexPartidaClicada ->
+                    doAsync {
+                        partidaDao.delete(listaPartidas.get(indexPartidaClicada))
+                        uiThread {
+                            onResume()
+                        }
+                    }
+                    true
+                }
+
                 val layoutManager = LinearLayoutManager(this)
 
                 rvHistorico.adapter = adapter
