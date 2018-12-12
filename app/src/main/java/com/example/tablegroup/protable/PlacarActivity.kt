@@ -83,11 +83,11 @@ class PlacarActivity : Activity() {
     fun finalSet(){
         when (set) {
             //Lado esquerda das variaveis Set'is é do jogador1
-            1 -> partida.Set1 = pontosLeft.toString() + "x" + pontosRight.toString()
-            2 -> partida.Set2 = pontosRight.toString() + "x" + pontosLeft.toString()
-            3 -> partida.Set3 = pontosLeft.toString() + "x" + pontosRight.toString()
-            4 -> partida.Set4 = pontosRight.toString() + "x" + pontosLeft.toString()
-            5 -> partida.Set5 = pontosLeft.toString() + "x" + pontosRight.toString()
+            1 -> partida.Set1 = pontosLeft.toString().padStart(2, '0') + "x" + pontosRight.toString().padStart(2, '0')
+            2 -> partida.Set2 = pontosRight.toString().padStart(2, '0') + "x" + pontosLeft.toString().padStart(2, '0')
+            3 -> partida.Set3 = pontosLeft.toString().padStart(2, '0') + "x" + pontosRight.toString().padStart(2, '0')
+            4 -> partida.Set4 = pontosRight.toString().padStart(2, '0') + "x" + pontosLeft.toString().padStart(2, '0')
+            5 -> partida.Set5 = pontosLeft.toString().padStart(2, '0') + "x" + pontosRight.toString().padStart(2, '0')
         }
 
         pontosLeft = 0

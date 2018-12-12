@@ -21,7 +21,8 @@
             android:screenOrientation="landscape" />
         <activity android:name=".ConfiguraPlacarActivity" />
         <activity android:name=".HistoricoActivity" />
-        <activity android:name=".PartidaItemActivity"></activity>
+        <activity android:name=".PartidaItemActivity" />
+        <activity android:name=".DescricaoPartidaActivity"></activity>
     </application>
 
 </manifest>

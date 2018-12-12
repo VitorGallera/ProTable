@@ -31,9 +31,9 @@ class HistoricoActivity : Activity() {
 
                 //configura o clique em cada item do RecyclerView
                 adapter.setOnItemClickListener { indexPartidaClicado ->
-                    // val editaContatinho = Intent(this, CadastraContatinhoActivity::class.java)
-                    //editaContatinho.putExtra(CadastraContatinhoActivity.CONTATINHO, listaContatinhos.get(indexContatinhoClicado))
-                    //startActivity(editaContatinho)
+                     val descricaoPartida = Intent(this, DescricaoPartidaActivity::class.java)
+                    descricaoPartida.putExtra(DescricaoPartidaActivity.PARTIDA, listaPartidas.get(indexPartidaClicado))
+                    startActivity(descricaoPartida)
                     true
                 }
 
